@@ -1,6 +1,11 @@
 # README
 
-Converting a long url to a short url:
+ShortLink is an API that can be used to: 
+
+- convert a regular url to a short url
+- retrieve a regular url from a stored short url
+
+## Converting a long url to a short url:
 
 ```
 POST /api/v1/shorturls
@@ -23,7 +28,7 @@ Expected response:
 }
 ```
 
-Retrieving a long url from a short url:
+## Retrieving a long url from a short url:
 
 ```
 GET /api/v1/longurls/FL5fYLb0
