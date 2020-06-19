@@ -1,24 +1,63 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Converting a long url to a short url:
 
-Things you may want to cover:
+```
+POST /api/v1/shorturls
+{
+    "long_url": "https://stackoverflow.com/questions/7167895/rails-whats-a-good-way-to-validate-links-urls/7167988"
+}
+```
 
-* Ruby version
+Expected response:
+```
+{
+    "data": {
+        "id": "1",
+        "type": "url",
+        "attributes": {
+            "short_url": "FL5fYLb0",
+            "long_url": "https://stackoverflow.com/questions/7167895/rails-whats-a-good-way-to-validate-links-urls/7167988"
+        }
+    }
+}
+```
 
-* System dependencies
+Retrieving a long url from a short url:
 
-* Configuration
+```
+GET /api/v1/longurls/FL5fYLb0
+```
 
-* Database creation
+Expected response:
+```
+{
+    "data": {
+        "id": "1",
+        "type": "url",
+        "attributes": {
+            "short_url": "FL5fYLb0",
+            "long_url": "https://stackoverflow.com/questions/7167895/rails-whats-a-good-way-to-validate-links-urls/7167988"
+        }
+    }
+}
+```
 
-* Database initialization
+Retrieving a long url from an invalid short url:
 
-* How to run the test suite
+```
+GET /api/v1/longurls/not_a_valid_short_url
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Expected response:
+```
+{
+    "data": {
+        "id": "poro",
+        "type": "error",
+        "attributes": {
+            "message": "Requested url does not exist"
+        }
+    }
+}
+```
